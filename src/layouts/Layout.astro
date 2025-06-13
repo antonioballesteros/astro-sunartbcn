@@ -14,7 +14,15 @@ import { buttonVariants } from "@/components/ui/button";
   </head>
   <body class="font-sans text-gray-800">
     <header class="p-6 bg-white shadow-md flex justify-between items-center">
-      <a href="/" class="text-xl font-bold text-green-600">Sunart BCN</a>
+      <a
+        href="/"
+        class={buttonVariants({
+          variant: "link",
+          className: "text-2xl!",
+        })}
+      >
+        Sunart BCN
+      </a>
       <nav>
         <a href="/tienda" class={buttonVariants({ variant: "link" })}>Tienda</a>
         <a href="/sobre-mi" class={buttonVariants({ variant: "link" })}
@@ -26,7 +34,7 @@ import { buttonVariants } from "@/components/ui/button";
       </nav>
     </header>
     <main> <slot /></main>
-    <footer class="bg-green-100 text-center py-4 mt-12">
+    <footer class="bg-brand/20 text-center py-4 mt-12">
       <p>&copy; 2025 Sunart BCN · Hecho con 💖 en Barcelona</p>
     </footer>
   </body>
