@@ -5,8 +5,6 @@ import { getCollection } from "astro:content";
 
 const productos = await getCollection("productos");
 const featuredProducts = productos.filter((product) => product.data.featured);
-
-console.log("Featured Products:", featuredProducts);
 ---
 
 <Layout>
@@ -17,7 +15,7 @@ console.log("Featured Products:", featuredProducts);
       >Piezas únicas hechas a mano con flores naturales y resina epoxi.</p
     >
     <a
-      href="/tienda"
+      href="/productos"
       class="inline-block mt-6 px-6 py-3 bg-pink-300 text-white rounded-full hover:bg-pink-400"
       >Ver productos</a
     >
@@ -37,7 +35,11 @@ console.log("Featured Products:", featuredProducts);
   <section class="bg-gray-50 py-16 px-6">
     <h2 class="text-3xl font-serif text-center mb-10">Productos destacados</h2>
     <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      {featuredProducts.map((producto) => <ProductCard {...producto.data} />)}
+      {
+        featuredProducts.map(({ slug, data }) => (
+          <ProductCard slug={slug} {...data} />
+        ))
+      }
     </div>
     <div class="text-center mt-10">
       <a href="/tienda" class="text-pink-500 underline">Ver toda la tienda</a>
