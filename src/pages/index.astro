@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import ProductCard from "@/components/ProductCard.astro";
 import { getCollection } from "astro:content";
+import { buttonVariants } from "@/components/ui/button";
 
 const productos = await getCollection("productos");
 const featuredProducts = productos.filter((product) => product.data.featured);
@@ -16,8 +17,12 @@ const featuredProducts = productos.filter((product) => product.data.featured);
     >
     <a
       href="/productos"
-      class="inline-block mt-6 px-6 py-3 bg-green-500 text-white rounded-full hover:bg-green-600"
-      >Ver productos</a
+      class={buttonVariants({
+        variant: "destructive",
+        className: "mt-6",
+      })}
+    >
+      Ver productos</a
     >
   </section>
 
@@ -27,8 +32,12 @@ const featuredProducts = productos.filter((product) => product.data.featured);
       Soy Susana, artista floral en Barcelona. Creo piezas únicas que capturan
       la belleza efímera de las flores con técnicas artesanales.
     </p>
-    <a href="/sobre-mi" class="text-green-600 underline mt-4 inline-block"
-      >Leer más</a
+    <a
+      href="/sobre-mi"
+      class={buttonVariants({
+        variant: "link",
+        className: "mt-6",
+      })}>Leer más</a
     >
   </section>
 
@@ -42,7 +51,14 @@ const featuredProducts = productos.filter((product) => product.data.featured);
       }
     </div>
     <div class="text-center mt-10">
-      <a href="/tienda" class="text-green-600 underline">Ver toda la tienda</a>
+      <a
+        href="/productos"
+        class={buttonVariants({
+          variant: "link",
+        })}
+      >
+        Ver toda la tienda</a
+      >
     </div>
   </section>
 

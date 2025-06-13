@@ -2,6 +2,7 @@
 import "@fontsource/abeezee";
 import "@fontsource-variable/bitter";
 import "@/styles/global.css";
+import { buttonVariants } from "@/components/ui/button";
 ---
 
 <html lang="es">
@@ -15,13 +16,11 @@ import "@/styles/global.css";
     <header class="p-6 bg-white shadow-md flex justify-between items-center">
       <a href="/" class="text-xl font-bold text-green-600">Sunart BCN</a>
       <nav>
-        <a href="/tienda" class="text-gray-600 hover:text-green-600 px-4"
-          >Tienda</a
-        >
-        <a href="/sobre-mi" class="text-gray-600 hover:text-green-600 px-4"
+        <a href="/tienda" class={buttonVariants({ variant: "link" })}>Tienda</a>
+        <a href="/sobre-mi" class={buttonVariants({ variant: "link" })}
           >Sobre mí</a
         >
-        <a href="/contacto" class="text-gray-600 hover:text-green-600 px-4"
+        <a href="/contacto" class={buttonVariants({ variant: "link" })}
           >Contacto</a
         >
       </nav>

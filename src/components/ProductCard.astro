@@ -1,4 +1,6 @@
 ---
+import { buttonVariants } from "./ui/button";
+
 const { slug, nombre, precio, imagen } = Astro.props;
 ---
 
@@ -11,8 +13,11 @@ const { slug, nombre, precio, imagen } = Astro.props;
     <p class="text-green-600 font-bold mt-2">€{precio}</p>
     <a
       href={`/producto/${slug}`}
-      class="inline-block mt-4 text-sm text-white bg-green-700 px-4 py-2 rounded-full hover:bg-green-800 animate duration-500 transition-all hover:scale-110"
-      >Ver más</a
+      class={buttonVariants({
+        variant: "destructive",
+        size: "sm",
+        className: "mt-4",
+      })}>Ver más</a
     >
   </div>
 </article>
