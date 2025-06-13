@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", "sans-serif";
+  --font-sans: "ABeeZee", "sans-serif";
+  --font-serif: "Bitter Variable", serif;
 }
