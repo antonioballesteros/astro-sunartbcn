@@ -1,8 +1,76 @@
 ---
-import Home from "../components/Home.astro";
-import RootLayout from "../layouts/RootLayout.astro";
+import Layout from "@/layouts/Layout.astro";
+import ProductCard from "@/components/ProductCard.astro";
+
+const destacados = [
+  {
+    id: "pendientes-rosas",
+    nombre: "Pendientes con Rosas",
+    precio: 18,
+    imagen: "/images/pendientes-rosas.jpg",
+  },
+  {
+    id: "colgante-margarita",
+    nombre: "Colgante Margarita",
+    precio: 22,
+    imagen: "/images/colgante-margarita.jpg",
+  },
+  {
+    id: "anillo-lavanda",
+    nombre: "Anillo con Lavanda",
+    precio: 16,
+    imagen: "/images/anillo-lavanda.jpg",
+  },
+];
 ---
 
-<RootLayout>
-  <Home />
-</RootLayout>
+<Layout>
+  <section class="bg-[#fff8f4] py-12 px-6 text-center">
+    <h1 class="text-4xl font-serif mb-4">Arte natural con flores preservadas</h1
+    >
+    <p class="max-w-xl mx-auto text-lg text-gray-700"
+      >Piezas únicas hechas a mano con flores naturales y resina epoxi.</p
+    >
+    <a
+      href="/tienda"
+      class="inline-block mt-6 px-6 py-3 bg-pink-300 text-white rounded-full hover:bg-pink-400"
+      >Ver productos</a
+    >
+  </section>
+
+  <section class="py-16 px-6 text-center">
+    <h2 class="text-3xl font-serif mb-4">Sobre mí</h2>
+    <p class="max-w-xl mx-auto text-gray-600">
+      Soy Susana, artista floral en Barcelona. Creo piezas únicas que capturan
+      la belleza efímera de las flores con técnicas artesanales.
+    </p>
+    <a href="/sobre-mi" class="text-pink-400 underline mt-4 inline-block"
+      >Leer más</a
+    >
+  </section>
+
+  <section class="bg-gray-50 py-16 px-6">
+    <h2 class="text-3xl font-serif text-center mb-10">Productos destacados</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {destacados.map((producto) => <ProductCard {...producto} />)}
+    </div>
+    <div class="text-center mt-10">
+      <a href="/tienda" class="text-pink-500 underline">Ver toda la tienda</a>
+    </div>
+  </section>
+
+  <section class="py-16 px-6 text-center bg-white">
+    <h2 class="text-3xl font-serif mb-6">Hecho con amor</h2>
+    <div class="flex flex-col md:flex-row justify-center gap-10 text-gray-700">
+      <div>
+        🌸 <p>Flores reales preservadas</p>
+      </div>
+      <div>
+        👐 <p>Hecho a mano en Barcelona</p>
+      </div>
+      <div>
+        💎 <p>Piezas únicas e irrepetibles</p>
+      </div>
+    </div>
+  </section>
+</Layout>

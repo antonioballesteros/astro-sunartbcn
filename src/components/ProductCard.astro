@@ -1,0 +1,11 @@
+---
+const { id, nombre, precio, imagen } = Astro.props;
+---
+<article class="bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition">
+  <img src={imagen} alt={nombre} class="w-full h-64 object-cover" />
+  <div class="p-4 text-center">
+    <h3 class="text-lg font-semibold">{nombre}</h3>
+    <p class="text-pink-500 font-bold mt-2">€{precio}</p>
+    <a href={`/producto/${id}`} class="inline-block mt-4 text-sm text-white bg-pink-400 px-4 py-2 rounded-full hover:bg-pink-500">Ver más</a>
+  </div>
+</article>
