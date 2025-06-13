@@ -2,6 +2,13 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection, getEntry } from "astro:content";
 import { ArrowLeft } from "lucide-astro";
+import { Image } from "astro:assets";
+
+// Importar todas las imágenes disponibles en assets
+// (más escalable que importar una por una)
+const images = await Astro.glob(
+  "../../assets/images/**/*.{jpg,png,jpeg,gif,webp}"
+);
 
 export async function getStaticPaths() {
   const productos = await getCollection("productos");
@@ -20,6 +27,24 @@ if (!productoEntry) {
 }
 
 const { data, body } = productoEntry;
+
+// Obtener el nombre del archivo de la ruta original
+const fileName = data.imagen.split("/").pop();
+
+// Crear una función para encontrar la imagen correspondiente
+function findImageByName(name: string | undefined) {
+  if (!name) return null;
+
+  // Buscar imágenes que contengan el nombre del archivo en su ruta
+  return (
+    images.find(
+      (img) => img.default && img.default.src && img.default.src.includes(name)
+    )?.default || null
+  );
+}
+
+// Intentar encontrar la imagen en los assets
+const imageAsset = findImageByName(fileName);
 ---
 
 <Layout>
@@ -34,11 +59,27 @@ const { data, body } = productoEntry;
   </div>
 
   <section class="max-w-5xl mx-auto py-16 px-6 grid md:grid-cols-2 gap-12">
-    <img
-      src={data.imagen}
-      alt={data.nombre}
-      class="w-full h-auto rounded-lg shadow-md"
-    />
+    {
+      imageAsset ? (
+        <Image
+          src={imageAsset}
+          width={800}
+          height={600}
+          alt={data.nombre}
+          format="webp"
+          quality={80}
+          class="w-full h-auto rounded-lg shadow-md object-cover"
+        />
+      ) : (
+        <img
+          src={data.imagen}
+          alt={data.nombre}
+          width="800"
+          height="600"
+          class="w-full h-auto rounded-lg shadow-md"
+        />
+      )
+    }
     <div>
       <h1 class="text-3xl font-serif mb-4">{data.nombre}</h1>
       <p class="text-pink-500 text-xl font-bold mb-4">€{data.precio}</p>

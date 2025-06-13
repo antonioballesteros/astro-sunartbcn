@@ -1,11 +1,50 @@
 ---
+import { Image } from "astro:assets";
+
 const { slug, nombre, precio, imagen } = Astro.props;
+
+// Importar todas las imágenes disponibles en assets
+const images = await Astro.glob(
+  "../assets/images/**/*.{jpg,png,jpeg,gif,webp}"
+);
+
+// Obtener el nombre del archivo de la ruta de la imagen
+const fileName = imagen.split("/").pop();
+
+// Función para encontrar la imagen correspondiente
+function findImageByName(name: string | undefined) {
+  if (!name) return null;
+
+  // Buscar imágenes que contengan el nombre del archivo en su ruta
+  return (
+    images.find(
+      (img) => img.default && img.default.src && img.default.src.includes(name)
+    )?.default || null
+  );
+}
+
+// Intentar encontrar la imagen en los assets
+const imageAsset = findImageByName(fileName);
 ---
 
 <article
   class="bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition"
 >
-  <img src={imagen} alt={nombre} class="w-full h-64 object-cover" />
+  {
+    imageAsset ? (
+      <Image
+        src={imageAsset}
+        alt={nombre}
+        width={400}
+        height={300}
+        class="w-full h-64 object-cover"
+        format="webp"
+        quality={80}
+      />
+    ) : (
+      <img src={imagen} alt={nombre} class="w-full h-64 object-cover" />
+    )
+  }
   <div class="p-4 text-center">
     <h3 class="text-lg font-semibold">{nombre}</h3>
     <p class="text-pink-500 font-bold mt-2">€{precio}</p>
