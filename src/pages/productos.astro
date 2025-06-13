@@ -8,7 +8,7 @@ const productos = await getCollection("productos");
 
 <Layout title="Productos – Sunart BCN">
   <section class="px-4 py-8 max-w-6xl mx-auto">
-    <h1 class="text-4xl font-serif text-rose-700 mb-6">Productos</h1>
+    <h1 class="text-4xl font-serif text-green-700 mb-6">Productos</h1>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {productos.map(({ slug, data }) => <ProductCard slug={slug} {...data} />)}

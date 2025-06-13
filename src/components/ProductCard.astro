@@ -8,10 +8,10 @@ const { slug, nombre, precio, imagen } = Astro.props;
   <img src={imagen} alt={nombre} class="w-full h-64 object-cover" />
   <div class="p-4 text-center">
     <h3 class="text-lg font-semibold">{nombre}</h3>
-    <p class="text-pink-500 font-bold mt-2">€{precio}</p>
+    <p class="text-green-600 font-bold mt-2">€{precio}</p>
     <a
       href={`/producto/${slug}`}
-      class="inline-block mt-4 text-sm text-white bg-pink-400 px-4 py-2 rounded-full hover:bg-pink-500"
+      class="inline-block mt-4 text-sm text-white bg-green-700 px-4 py-2 rounded-full hover:bg-green-800 animate duration-500 transition-all hover:scale-110"
       >Ver más</a
     >
   </div>
