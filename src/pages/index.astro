@@ -1,27 +1,12 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import ProductCard from "@/components/ProductCard.astro";
+import { getCollection } from "astro:content";
 
-const destacados = [
-  {
-    id: "pendientes-rosas",
-    nombre: "Pendientes con Rosas",
-    precio: 18,
-    imagen: "/images/pendientes-rosas.jpg",
-  },
-  {
-    id: "colgante-margarita",
-    nombre: "Colgante Margarita",
-    precio: 22,
-    imagen: "/images/colgante-margarita.jpg",
-  },
-  {
-    id: "anillo-lavanda",
-    nombre: "Anillo con Lavanda",
-    precio: 16,
-    imagen: "/images/anillo-lavanda.jpg",
-  },
-];
+const productos = await getCollection("productos");
+const featuredProducts = productos.filter((product) => product.data.featured);
+
+console.log("Featured Products:", featuredProducts);
 ---
 
 <Layout>
@@ -52,7 +37,7 @@ const destacados = [
   <section class="bg-gray-50 py-16 px-6">
     <h2 class="text-3xl font-serif text-center mb-10">Productos destacados</h2>
     <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      {destacados.map((producto) => <ProductCard {...producto} />)}
+      {featuredProducts.map((producto) => <ProductCard {...producto.data} />)}
     </div>
     <div class="text-center mt-10">
       <a href="/tienda" class="text-pink-500 underline">Ver toda la tienda</a>
