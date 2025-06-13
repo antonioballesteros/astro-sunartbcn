@@ -1,0 +1,51 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, getEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const productos = await getCollection("productos");
+
+  return productos.map((producto) => ({
+    params: { slug: producto.slug },
+    props: { slug: producto.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const productoEntry = await getEntry("productos", slug);
+
+if (!productoEntry) {
+  throw new Error("Producto no encontrado");
+}
+
+const { data, body } = productoEntry;
+---
+
+<Layout>
+  <section class="max-w-5xl mx-auto py-16 px-6 grid md:grid-cols-2 gap-12">
+    <img
+      src={data.imagen}
+      alt={data.nombre}
+      class="w-full h-auto rounded-lg shadow-md"
+    />
+    <div>
+      <h1 class="text-3xl font-serif mb-4">{data.nombre}</h1>
+      <p class="text-pink-500 text-xl font-bold mb-4">€{data.precio}</p>
+
+      <article class="mb-6 text-gray-700">
+        <astro:markdown>{body}</astro:markdown>
+      </article>
+
+      <h2 class="font-semibold mb-2">Flores utilizadas:</h2>
+      <ul class="mb-6 list-disc list-inside text-gray-600">
+        {data.flores.map((flor) => <li>{flor}</li>)}
+      </ul>
+
+      <button
+        class="bg-pink-400 text-white px-6 py-3 rounded-full hover:bg-pink-500 transition"
+      >
+        Añadir al carrito
+      </button>
+    </div>
+  </section>
+</Layout>
