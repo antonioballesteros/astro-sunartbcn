@@ -49,21 +49,20 @@ const { Content } = await render(producto);
         class="text-3xl font-serif mb-4"
         transition:name={`product-title-${slug}`}>{data.nombre}</h1
       >
-      <p
-        class="text-brand-600 text-xl font-bold mb-4"
-        transition:name={`product-price-${slug}`}>€{data.precio}</p
-      >
+      <div class="flex gap-2 items-center mb-6">
+        <span
+          class="text-brand-600 text-xl font-bold"
+          transition:name={`product-price-${slug}`}>€{data.precio}</span
+        >
 
+        <Button variant="brand" size="lg"> Añadir al carrito </Button>
+      </div>
       <article class="mb-6">
         <Content />
       </article>
 
       <h2 class="font-semibold mb-2">Flores utilizadas:</h2>
       {data.flores.map((flor) => <li>{flor}</li>)}
-
-      <Button className="mt-6" variant="brand" size="lg">
-        Añadir al carrito
-      </Button>
     </div>
   </section>
 </Layout>
