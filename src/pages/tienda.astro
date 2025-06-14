@@ -1,0 +1,144 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { buttonVariants } from "../components/ui/button";
+import { getCollection } from "astro:content";
+import ProductCard from "@/components/ProductCard.astro";
+
+const productos = await getCollection("productos");
+const featuredProducts = productos.filter((product) => product.data.featured);
+---
+
+<Layout title="Tienda – Sunart BCN">
+  <div class="max-w-4xl mx-auto px-6 py-12">
+    <h1
+      class="text-4xl font-serif mb-8 text-center"
+      transition:name="tienda-heading"
+    >
+      Tienda
+    </h1>
+
+    <div class="mb-10 text-center">
+      <div class="bg-brand-100 p-8 rounded-lg shadow-md mb-8">
+        <h2 class="text-2xl font-serif mb-4 text-brand-900"
+          >Próximamente: Tienda Online</h2
+        >
+        <p class="mb-4 text-lg">
+          Estoy trabajando para que muy pronto puedas comprar mis creaciones
+          directamente desde esta web.
+        </p>
+        <p class="text-lg">
+          Mientras tanto, puedes ver todos mis productos en la sección de
+          productos y contactarme para realizar tu pedido.
+        </p>
+      </div>
+
+      <img
+        src="/images/tmp_banner-tienda.avif"
+        alt="La tienda en la feria de artesanía"
+        class="w-full h-auto rounded-lg shadow-lg mb-8"
+      />
+    </div>
+
+    <div class="mb-10">
+      <h2 class="text-3xl font-serif mb-6 text-center text-brand-900"
+        >¿Cómo comprar?</h2
+      >
+      <div class="grid md:grid-cols-3 gap-6 text-center">
+        <div class="bg-brand-100 p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-3">👁️</div>
+          <h3 class="text-xl font-serif mb-2">Explora</h3>
+          <p>
+            Visita la sección de productos y explora todas mis creaciones
+            artesanales.
+          </p>
+        </div>
+        <div class="bg-brand-100 p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-3">💬</div>
+          <h3 class="text-xl font-serif mb-2">Contacta</h3>
+          <p>
+            Escríbeme detallando qué producto te interesa o si deseas algo
+            personalizado.
+          </p>
+        </div>
+        <div class="bg-brand-100 p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-3">📦</div>
+          <h3 class="text-xl font-serif mb-2">Recibe</h3>
+          <p>
+            Coordinamos el envío o la entrega de tu pieza artesanal única.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-10 gap-8 flex flex-col">
+      <h2 class="text-3xl font-serif text-center text-brand-900"
+        >Productos Destacados</h2
+      >
+      <p class="text-center">
+        Aquí hay una selección de mis productos más populares. Todos son piezas
+        artesanales únicas hechas con flores preservadas.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {
+          featuredProducts.map(({ slug, data }) => (
+            <ProductCard slug={slug} {...data} />
+          ))
+        }
+      </div>
+      <div class="text-center">
+        <a
+          href="/productos"
+          class={buttonVariants({
+            variant: "brand",
+          })}
+        >
+          Ver todos los productos
+        </a>
+      </div>
+    </div>
+
+    <div class="mb-10">
+      <h2 class="text-3xl font-serif mb-6 text-center text-brand-900"
+        >Artesanía Personalizada</h2
+      >
+      <div class="bg-brand-100 p-8 rounded-lg shadow-md text-center">
+        <p class="mb-4 text-lg">
+          ¿Buscas algo único? Puedo crear una pieza personalizada según tus
+          gustos y necesidades.
+        </p>
+        <p class="mb-6 text-lg">
+          Cada creación es única e irrepetible, adaptada a tus preferencias y
+          confeccionada con el mismo amor y dedicación.
+        </p>
+        <a
+          href="/contacto"
+          class={buttonVariants({
+            variant: "default",
+          })}
+        >
+          Solicitar un diseño personalizado
+        </a>
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <h2 class="text-3xl font-serif mb-6 text-center text-brand-900"
+        >Ferias y Eventos</h2
+      >
+      <p class="text-center mb-6">
+        También puedes encontrarme en distintas ferias de artesanía en Barcelona
+        y alrededores.
+      </p>
+      <div class="text-center">
+        <a
+          href="/contacto"
+          class={buttonVariants({
+            variant: "default",
+          })}
+        >
+          Pregúntame dónde estaré próximamente
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
