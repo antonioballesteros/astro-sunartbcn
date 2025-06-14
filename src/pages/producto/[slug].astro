@@ -1,5 +1,5 @@
 ---
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Layout from "../../layouts/Layout.astro";
 import { getCollection, getEntry } from "astro:content";
 import { ArrowLeft } from "lucide-astro";
@@ -48,22 +48,16 @@ const { data, body } = productoEntry;
       <h1 class="text-3xl font-serif mb-4">{data.nombre}</h1>
       <p class="text-brand-600 text-xl font-bold mb-4">€{data.precio}</p>
 
-      <article class="mb-6 text-gray-700">
+      <article class="mb-6">
         <astro:markdown>{body}</astro:markdown>
       </article>
 
       <h2 class="font-semibold mb-2">Flores utilizadas:</h2>
-      <ul class="mb-6 list-disc list-inside text-gray-600">
-        {data.flores.map((flor) => <li>{flor}</li>)}
-      </ul>
+      {data.flores.map((flor) => <li>{flor}</li>)}
 
-      <button
-        class={buttonVariants({
-          variant: "brand",
-        })}
-      >
+      <Button className="mt-6" variant="brand" size="lg">
         Añadir al carrito
-      </button>
+      </Button>
     </div>
   </section>
 </Layout>

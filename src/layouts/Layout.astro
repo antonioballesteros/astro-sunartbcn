@@ -13,8 +13,10 @@ import { ModeToggle } from "@/components/ModeToggle";
     <title>Sunart BCN</title>
     <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
-  <body class="font-sans text-gray-800">
-    <header class="p-6 bg-white shadow-md flex justify-between items-center">
+  <body class="font-sans text-foreground bg-background">
+    <header
+      class="p-6 bg-background shadow-md flex justify-between items-center"
+    >
       <a
         href="/"
         class={buttonVariants({
@@ -22,7 +24,7 @@ import { ModeToggle } from "@/components/ModeToggle";
           className: "text-2xl! text-green-800",
         })}
       >
-        Sunart BCN
+        SunartBcn
       </a>
       <nav>
         <a href="/tienda" class={buttonVariants({ variant: "link" })}>Tienda</a>
@@ -34,9 +36,9 @@ import { ModeToggle } from "@/components/ModeToggle";
         >
       </nav>
     </header>
-    <main> <slot /></main>
+    <main><slot /></main>
     <footer
-      class="bg-brand-100 text-center py-4 mt-12 flex flex-rows items-center justify-between px-6"
+      class="text-brand-950 bg-brand-150 text-center pb-4 pt-12 flex flex-rows items-center justify-between px-6"
     >
       <p>&copy; 2025 Sunart BCN · Hecho con 💖 en Barcelona</p>
       <ModeToggle client:load />
