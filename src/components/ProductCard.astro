@@ -5,12 +5,23 @@ const { slug, nombre, precio, imagen } = Astro.props;
 ---
 
 <article
-  class="bg-brand-200 shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition"
+  class="bg-brand-200 shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition product-card"
+  transition:name={`product-${slug}`}
 >
-  <img src={imagen} alt={nombre} class="w-full h-64 object-cover" />
+  <img
+    src={imagen}
+    alt={nombre}
+    class="w-full h-64 object-cover"
+    transition:name={`product-image-${slug}`}
+  />
   <div class="p-4 text-center">
-    <h3 class="text-lg font-semibold">{nombre}</h3>
-    <p class="text-brand-600 font-bold mt-2">€{precio}</p>
+    <h3 class="text-lg font-semibold" transition:name={`product-title-${slug}`}
+      >{nombre}</h3
+    >
+    <p
+      class="text-brand-600 font-bold mt-2"
+      transition:name={`product-price-${slug}`}>€{precio}</p
+    >
     <a
       href={`/producto/${slug}`}
       class={buttonVariants({

@@ -4,6 +4,7 @@ import "@fontsource-variable/bitter";
 import "@/styles/global.css";
 import { buttonVariants } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
+import { ClientRouter } from "astro:transitions";
 ---
 
 <html lang="es">
@@ -12,6 +13,7 @@ import { ModeToggle } from "@/components/ModeToggle";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sunart BCN</title>
     <link rel="stylesheet" href="/src/styles/global.css" />
+    <ClientRouter />
   </head>
   <body class="font-sans text-brand-900 bg-background">
     <header class="p-6 shadow-md flex justify-between items-center">
@@ -34,15 +36,15 @@ import { ModeToggle } from "@/components/ModeToggle";
         >
       </nav>
     </header>
-    <main><slot /></main>
+    <main transition:animate="slide"><slot /></main>
     <footer
       class="text-brand-900 bg-brand-150 text-center pb-4 pt-12 flex flex-rows items-center justify-between px-6"
     >
       <p>&copy; 2025 Sunart BCN · Hecho con 💖 en Barcelona</p>
       <ModeToggle client:load />
     </footer>
-  </body>
-</html>
+  </body></html
+>
 
 <script is:inline>
   const getThemePreference = () => {
