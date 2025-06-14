@@ -33,36 +33,43 @@ const { Content } = await render(producto);
   </div>
 
   <section
-    class="max-w-5xl mx-auto py-16 px-6 grid md:grid-cols-2 gap-12"
+    class="max-w-5xl mx-auto py-16 px-6"
     transition:name={`product-${slug}`}
   >
-    <img
-      src={data.imagen}
-      alt={data.nombre}
-      width="800"
-      height="600"
-      class="w-full h-auto rounded-lg shadow-md object-cover"
-      transition:name={`product-image-${slug}`}
-    />
-    <div>
-      <h1
-        class="text-3xl font-serif mb-4"
-        transition:name={`product-title-${slug}`}>{data.nombre}</h1
-      >
-      <div class="flex gap-2 items-center mb-6">
-        <span
-          class="text-brand-600 text-xl font-bold"
-          transition:name={`product-price-${slug}`}>€{data.precio}</span
-        >
+    <h1
+      class="text-3xl font-serif mb-4"
+      transition:name={`product-title-${slug}-mobile`}
+    >
+      {data.nombre}
+    </h1>
 
-        <Button variant="brand" size="lg"> Añadir al carrito </Button>
+    <div class="grid md:grid-cols-2 gap-12">
+      <img
+        src={data.imagen}
+        alt={data.nombre}
+        width="800"
+        height="600"
+        class="w-full h-auto rounded-lg shadow-md object-cover"
+        transition:name={`product-image-${slug}`}
+      />
+      <div>
+        <article class="mb-6">
+          <Content />
+        </article>
+        <div class="flex gap-2 items-center mb-6">
+          <span
+            class="text-brand-600 text-xl font-bold"
+            transition:name={`product-price-${slug}`}
+          >
+            €{data.precio}
+          </span>
+          <Button variant="brand" size="lg"> Añadir al carrito </Button>
+        </div>
+        <h2 class="font-semibold mb-2">Flores utilizadas:</h2>
+        <ul class="list-disc pl-5">
+          {data.flores.map((flor) => <li>{flor}</li>)}
+        </ul>
       </div>
-      <article class="mb-6">
-        <Content />
-      </article>
-
-      <h2 class="font-semibold mb-2">Flores utilizadas:</h2>
-      {data.flores.map((flor) => <li>{flor}</li>)}
     </div>
   </section>
 </Layout>

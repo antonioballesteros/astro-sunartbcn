@@ -6,6 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
 import { ClientRouter } from "astro:transitions";
 import { Separator } from "@/components/ui/separator";
+import { Header } from "@/components/Header";
 ---
 
 <html lang="es">
@@ -17,32 +18,7 @@ import { Separator } from "@/components/ui/separator";
     <ClientRouter />
   </head>
   <body class="font-sans text-brand-900 bg-background">
-    <header class="p-6 shadow-md flex justify-between items-center">
-      <a
-        href="/"
-        class={buttonVariants({
-          variant: "link",
-          className: "flex items-center gap-2 no-underline!",
-        })}
-      >
-        <img src="/images/logo.png" alt="SunArtBcn Logo" class="h-10 w-auto" />
-        <span class="text-3xl font-medium text-green-800">SunArtBcn</span>
-      </a>
-      <nav>
-        <a href="/" class={buttonVariants({ variant: "link" })}>Inicio</a>
-        <a href="/productos" class={buttonVariants({ variant: "link" })}
-          >Productos</a
-        >
-        <a href="/quien-soy" class={buttonVariants({ variant: "link" })}
-          >Quien Soy</a
-        >
-        <a href="/tienda" class={buttonVariants({ variant: "link" })}>Tienda</a>
-        <a href="/contacto" class={buttonVariants({ variant: "link" })}
-          >Contacto</a
-        >
-        <ModeToggle client:load />
-      </nav>
-    </header>
+    <Header client:load />
     <main
       transition:animate="slide"
       class="mx-auto max-w-6xl px-4 py-8 text-brand-900"><slot /></main
@@ -53,29 +29,30 @@ import { Separator } from "@/components/ui/separator";
         >&copy; 2025 SunArtBcn · Hecho con 💖 en Barcelona</p
       >
     </footer>
-  </body></html
->
+  </body><script is:inline>
+    const getThemePreference = () => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+      ) {
+        return localStorage.getItem("theme");
+      }
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    };
+    const isDark = getThemePreference() === "dark";
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
 
-<script is:inline>
-  const getThemePreference = () => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
+    if (typeof localStorage !== "undefined") {
+      const observer = new MutationObserver(() => {
+        const isDark = document.documentElement.classList.contains("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
     }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  };
-  const isDark = getThemePreference() === "dark";
-  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-
-  if (typeof localStorage !== "undefined") {
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-  }
-</script>
+  </script>
+</html>
