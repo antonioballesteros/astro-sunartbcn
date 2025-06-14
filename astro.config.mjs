@@ -6,10 +6,7 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss({
-      // Configuración explícita del archivo tailwind.config.mjs
-      config: './tailwind.config.mjs'
-    })]
+    plugins: [tailwindcss()]
   },
 
   integrations: [react()]
