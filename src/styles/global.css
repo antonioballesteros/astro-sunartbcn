@@ -37,6 +37,17 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
   --color-brand: var(--brand);
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-brand-950: var(--brand-950);
   --color-brand-foreground: var(--brand-foreground);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
@@ -73,7 +84,18 @@
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --brand: oklch(0.55 0.18 150);
+  --brand: oklch(0.55 0.18 150); /* Volvemos al tono verde */
+  --brand-50: oklch(0.95 0.03 150);
+  --brand-100: oklch(0.9 0.05 150);
+  --brand-200: oklch(0.85 0.08 150);
+  --brand-300: oklch(0.75 0.12 150);
+  --brand-400: oklch(0.65 0.15 150);
+  --brand-500: oklch(0.55 0.18 150);
+  --brand-600: oklch(0.45 0.2 150);
+  --brand-700: oklch(0.35 0.22 150);
+  --brand-800: oklch(0.25 0.24 150);
+  --brand-900: oklch(0.15 0.26 150);
+  --brand-950: oklch(0.1 0.28 150);
   --brand-foreground: oklch(0.985 0.002 247.839);
   --sidebar: oklch(0.985 0.002 247.839);
   --sidebar-foreground: oklch(0.13 0.028 261.692);
@@ -109,7 +131,18 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --brand: oklch(0.55 0.2 150);
+  --brand: oklch(0.55 0.2 150); /* Volvemos al tono verde */
+  --brand-50: oklch(0.95 0.03 150);
+  --brand-100: oklch(0.9 0.05 150);
+  --brand-200: oklch(0.85 0.08 150);
+  --brand-300: oklch(0.75 0.12 150);
+  --brand-400: oklch(0.65 0.15 150);
+  --brand-500: oklch(0.55 0.2 150);
+  --brand-600: oklch(0.45 0.22 150);
+  --brand-700: oklch(0.35 0.24 150);
+  --brand-800: oklch(0.25 0.26 150);
+  --brand-900: oklch(0.15 0.28 150);
+  --brand-950: oklch(0.1 0.3 150);
   --brand-foreground: oklch(0.13 0.028 261.692);
   --sidebar: oklch(0.21 0.034 264.665);
   --sidebar-foreground: oklch(0.985 0.002 247.839);
