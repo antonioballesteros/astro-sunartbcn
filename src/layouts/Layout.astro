@@ -5,6 +5,7 @@ import "@/styles/global.css";
 import { buttonVariants } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
 import { ClientRouter } from "astro:transitions";
+import { Separator } from "@/components/ui/separator";
 ---
 
 <html lang="es">
@@ -28,6 +29,7 @@ import { ClientRouter } from "astro:transitions";
         <span class="text-3xl font-medium text-green-800">SunArtBcn</span>
       </a>
       <nav>
+        <a href="/" class={buttonVariants({ variant: "link" })}>Inicio</a>
         <a href="/productos" class={buttonVariants({ variant: "link" })}
           >Productos</a
         >
@@ -38,14 +40,15 @@ import { ClientRouter } from "astro:transitions";
         <a href="/contacto" class={buttonVariants({ variant: "link" })}
           >Contacto</a
         >
+        <ModeToggle client:load />
       </nav>
     </header>
-    <main transition:animate="slide"><slot /></main>
-    <footer
-      class="text-brand-900 bg-brand-150 text-center pb-4 pt-12 flex flex-rows items-center justify-between px-6"
-    >
-      <p>&copy; 2025 SunArtBcn · Hecho con 💖 en Barcelona</p>
-      <ModeToggle client:load />
+    <main transition:animate="slide" class="mx-auto max-w-6xl"><slot /></main>
+    <footer class="text-brand-900 bg-brand-150 pb-4 pt-12 flex flex-col px-6">
+      <Separator className="my-6 shadow-md" />
+      <p class="mx-auto max-w-6xl w-full"
+        >&copy; 2025 SunArtBcn · Hecho con 💖 en Barcelona</p
+      >
     </footer>
   </body></html
 >
