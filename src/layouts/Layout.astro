@@ -21,10 +21,11 @@ import { ClientRouter } from "astro:transitions";
         href="/"
         class={buttonVariants({
           variant: "link",
-          className: "text-2xl! text-green-800",
+          className: "flex items-center gap-2 no-underline!",
         })}
       >
-        SunArtBcn
+        <img src="/images/logo.png" alt="SunArtBcn Logo" class="h-10 w-auto" />
+        <span class="text-3xl font-medium text-green-800">SunArtBcn</span>
       </a>
       <nav>
         <a href="/productos" class={buttonVariants({ variant: "link" })}
