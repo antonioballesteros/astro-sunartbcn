@@ -1,7 +1,7 @@
 ---
 import { Button, buttonVariants } from "@/components/ui/button";
 import Layout from "../../layouts/Layout.astro";
-import { getCollection, getEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { ArrowLeft } from "lucide-astro";
 
 export async function getStaticPaths() {
@@ -9,18 +9,13 @@ export async function getStaticPaths() {
 
   return productos.map((producto) => ({
     params: { slug: producto.slug },
-    props: { slug: producto.slug },
+    props: { producto },
   }));
 }
 
+const { producto } = Astro.props;
 const { slug } = Astro.params;
-const productoEntry = await getEntry("productos", slug);
-
-if (!productoEntry) {
-  throw new Error("Producto no encontrado");
-}
-
-const { data, body } = productoEntry;
+const { data, body } = producto;
 ---
 
 <Layout>
