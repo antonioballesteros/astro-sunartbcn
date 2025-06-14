@@ -24,10 +24,12 @@ import { ClientRouter } from "astro:transitions";
           className: "text-2xl! text-green-800",
         })}
       >
-        SunartBcn
+        SunArtBcn
       </a>
       <nav>
-        <a href="/tienda" class={buttonVariants({ variant: "link" })}>Tienda</a>
+        <a href="/productos" class={buttonVariants({ variant: "link" })}
+          >Productos</a
+        >
         <a href="/sobre-mi" class={buttonVariants({ variant: "link" })}
           >Sobre mí</a
         >
@@ -40,7 +42,7 @@ import { ClientRouter } from "astro:transitions";
     <footer
       class="text-brand-900 bg-brand-150 text-center pb-4 pt-12 flex flex-rows items-center justify-between px-6"
     >
-      <p>&copy; 2025 Sunart BCN · Hecho con 💖 en Barcelona</p>
+      <p>&copy; 2025 SunArtBcn · Hecho con 💖 en Barcelona</p>
       <ModeToggle client:load />
     </footer>
   </body></html
