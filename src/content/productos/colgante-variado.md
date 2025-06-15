@@ -3,6 +3,7 @@ id: colgante-variado
 nombre: Colgante Flores Variadas
 precio: 16
 imagen: /images/tmp_colgante-variado.jpg
+categoria: Colgantes
 flores:
   - Lavanda
   - Helecho mini

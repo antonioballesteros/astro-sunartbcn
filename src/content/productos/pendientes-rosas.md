@@ -4,6 +4,7 @@ nombre: Pendientes con Rosas
 featured: true
 precio: 18
 imagen: /images/tmp_pendientes-rosas.jpg
+categoria: Pendientes
 flores:
   - Rosa mini
   - Paniculata
