@@ -5,6 +5,8 @@ import react from '@astrojs/react';
 
 import vercel from '@astrojs/vercel';
 
+import icon from 'astro-icon';
+
 // https://astro.build/config
 export default defineConfig({
   // Default: 'static'
@@ -46,6 +48,6 @@ export default defineConfig({
     responsiveImages: true // Optimize images
   },
 
-  integrations: [react()],
+  integrations: [react(), icon()],
   adapter: vercel()
 });

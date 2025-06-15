@@ -1,10 +1,12 @@
 ---
 export const prerender = false;
 
+import { Icon } from "astro-icon/components";
+
 import Layout from "@/layouts/Layout.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { getCollection } from "astro:content";
-import { MailIcon, PhoneIcon, InstagramIcon } from "lucide-react";
+import { MailIcon, PhoneIcon } from "lucide-react";
 
 // Obtener la colección de eventos para el formulario
 const eventos = await getCollection("eventos");
@@ -134,7 +136,22 @@ const evento = Astro.url.searchParams.get("evento") || "";
             </div>
 
             <div class="flex items-start">
-              <InstagramIcon className="h-5 w-5 text-brand-600 mr-3 mt-1" />
+              <Icon name="whatsapp" class="h-5 w-5 text-brand-600 mr-3 mt-1" />
+              <div>
+                <p class="font-medium">Whatsapp</p>
+                <a
+                  href="https://wa.me/34639702464"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-brand-700 hover:text-brand-900 transition-colors"
+                >
+                  639 70 24 64
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <Icon name="instagram" class="h-5 w-5 text-brand-600 mr-3 mt-1" />
               <div>
                 <p class="font-medium">Instagram</p>
                 <a
