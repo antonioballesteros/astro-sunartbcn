@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 
-const productos  = defineCollection({
+const productos = defineCollection({
   schema: z.object({
     id: z.string(),
     nombre: z.string(),
@@ -11,6 +11,19 @@ const productos  = defineCollection({
   }),
 });
 
+const eventos = defineCollection({
+  schema: z.object({
+    id: z.string(),
+    titulo: z.string(),
+    fechaInicio: z.string(),
+    fechaFin: z.string(),
+    localizacion: z.string(),
+    descripcion: z.string(),
+    imagen: z.string(),
+  }),
+});
+
 export const collections = {
   productos,
+  eventos,
 };

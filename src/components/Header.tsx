@@ -59,6 +59,15 @@ export function Header() {
               Quien Soy
             </a>
             <a
+              href="/donde-encontrarme"
+              className={buttonVariants({
+                variant: "link",
+                className: "w-fit",
+              })}
+            >
+              Dónde Encontrarme
+            </a>
+            <a
               href="/tienda"
               className={buttonVariants({
                 variant: "link",
@@ -104,6 +113,12 @@ export function Header() {
         </a>
         <a href="/quien-soy" className={buttonVariants({ variant: "link" })}>
           Quien Soy
+        </a>
+        <a
+          href="/donde-encontrarme"
+          className={buttonVariants({ variant: "link" })}
+        >
+          Dónde Encontrarme
         </a>
         <a href="/tienda" className={buttonVariants({ variant: "link" })}>
           Tienda

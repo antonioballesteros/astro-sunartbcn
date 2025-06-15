@@ -3,8 +3,13 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 
+import vercel from '@astrojs/vercel';
+
 // https://astro.build/config
 export default defineConfig({
+  // Default: 'static'
+  output: 'static',
+
   vite: {
     plugins: [tailwindcss()],
     // Optimize dev server performance
@@ -28,15 +33,19 @@ export default defineConfig({
       force: true
     }
   },
+
   // Improve dev server startup time
   server: {
     port: 4321,
     host: 'localhost'
   },
+
   // Content collection optimization
   experimental: {
     clientPrerender: true, // Prerender where possible
     responsiveImages: true // Optimize images
   },
-  integrations: [react()]
+
+  integrations: [react()],
+  adapter: vercel()
 });
