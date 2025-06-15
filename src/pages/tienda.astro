@@ -78,7 +78,7 @@ const featuredProducts = productos.filter((product) => product.data.featured);
         Aquí hay una selección de mis productos más populares. Todos son piezas
         artesanales únicas hechas con flores preservadas.
       </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {
           featuredProducts.map(({ slug, data }) => (
             <ProductCard slug={slug} {...data} />

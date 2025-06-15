@@ -63,7 +63,7 @@ const featuredProducts = productos.filter((product) => product.data.featured);
 
   <section class="py-16 px-6">
     <h2 class="text-3xl font-serif text-center mb-10">Productos destacados</h2>
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
       {
         featuredProducts.map(({ slug, data }) => (
           <ProductCard slug={slug} {...data} />

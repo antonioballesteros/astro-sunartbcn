@@ -1,7 +1,7 @@
 ---
 id: colgante-margarita
 nombre: Colgantes con Margaritas
-featured: false
+featured: true
 precio: 18
 imagen: /images/_tmp_prod-without-img.png
 categoria: Colgantes

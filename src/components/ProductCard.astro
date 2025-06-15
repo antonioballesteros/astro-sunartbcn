@@ -5,23 +5,25 @@ const { slug, nombre, precio, imagen, categoria } = Astro.props;
 ---
 
 <article
-  class="bg-brand-200 shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition product-card"
+  class="bg-brand-200 shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition product-card flex flex-row h-64 w-full"
   transition:name={`product-${slug}`}
   data-categoria={categoria}
 >
-  <img
-    src={imagen}
-    alt={nombre}
-    class="w-full h-64 object-cover"
-    transition:name={`product-image-${slug}`}
-  />
-  <div class="p-4 text-center">
-    <h3 class="text-lg font-semibold" transition:name={`product-title-${slug}`}
+  <div class="w-2/5 h-full flex items-center justify-center">
+    <img
+      src={imagen}
+      alt={nombre}
+      class="h-auto max-h-full object-contain rounded-xl"
+      transition:name={`product-image-${slug}`}
+    />
+  </div>
+  <div class="w-3/5 p-6 flex flex-col justify-center">
+    <h3 class="text-xl font-semibold" transition:name={`product-title-${slug}`}
       >{nombre}</h3
     >
-    <p class="text-sm text-brand-500 mt-1">{categoria}</p>
+    <p class="text-sm text-brand-500 mt-2">{categoria}</p>
     <p
-      class="text-brand-600 font-bold mt-2"
+      class="text-brand-600 font-bold mt-3 text-lg"
       transition:name={`product-price-${slug}`}>€{precio}</p
     >
     <a
@@ -29,7 +31,7 @@ const { slug, nombre, precio, imagen, categoria } = Astro.props;
       class={buttonVariants({
         variant: "brand",
         size: "sm",
-        className: "mt-4",
+        className: "mt-4 w-fit",
       })}>Ver más</a
     >
   </div>
