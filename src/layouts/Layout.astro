@@ -30,19 +30,24 @@ import { Header } from "@/components/Header";
       >
     </footer>
   </body><script is:inline>
-    const getThemePreference = () => {
-      if (
-        typeof localStorage !== "undefined" &&
-        localStorage.getItem("theme")
-      ) {
-        return localStorage.getItem("theme");
-      }
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    };
-    const isDark = getThemePreference() === "dark";
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+    // Función para aplicar el tema
+    function applyTheme() {
+      const getThemePreference = () => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      };
+      const isDark = getThemePreference() === "dark";
+      document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+    }
+
+    applyTheme();
 
     if (typeof localStorage !== "undefined") {
       const observer = new MutationObserver(() => {
@@ -54,5 +59,9 @@ import { Header } from "@/components/Header";
         attributeFilter: ["class"],
       });
     }
+
+    document.addEventListener("astro:after-swap", () => {
+      applyTheme();
+    });
   </script>
 </html>
