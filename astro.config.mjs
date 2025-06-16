@@ -5,12 +5,11 @@ import react from '@astrojs/react';
 
 import vercel from '@astrojs/vercel';
 
-import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
-  // Default: 'static'
-  output: 'static',
+  // Default: 'static' 
+  output: 'static', // static / server 
 
   vite: {
     plugins: [tailwindcss()],
@@ -48,6 +47,6 @@ export default defineConfig({
     responsiveImages: true // Optimize images
   },
 
-  integrations: [react(), icon()],
+  integrations: [react()],
   adapter: vercel()
 });

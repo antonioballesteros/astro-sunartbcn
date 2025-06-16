@@ -1,0 +1,15 @@
+export { default as ArrowLeftIcon } from './ArrowLeftIcon';
+export { default as CalendarIcon } from './CalendarIcon';
+export { default as CheckIcon } from './CheckIcon';
+export { default as ChevronDownIcon } from './ChevronDownIcon';
+export { default as ChevronRightIcon } from './ChevronRightIcon';
+export { default as CircleIcon } from './CircleIcon';
+export { default as InstagramIcon } from './InstagramIcon';
+export { default as MailIcon } from './MailIcon';
+export { default as MapPinIcon } from './MapPinIcon';
+export { default as MenuIcon } from './MenuIcon';
+export { default as MoonIcon } from './MoonIcon';
+export { default as PhoneIcon } from './PhoneIcon';
+export { default as SunIcon } from './SunIcon';
+export { default as WhatsAppIcon } from './WhatsAppIcon';
+export { default as XIcon } from './XIcon';

@@ -1,7 +1,7 @@
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ModeToggle } from "./ModeToggle";
-import { MenuIcon } from "lucide-react";
+import { MenuIcon } from "@/components/icons";
 
 export function Header() {
   return (

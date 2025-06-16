@@ -2,7 +2,7 @@
 import { Button, buttonVariants } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
-import { ArrowLeft } from "lucide-astro";
+import { ArrowLeftIcon } from "@/components/icons";
 
 export async function getStaticPaths() {
   const productos = await getCollection("productos");
@@ -27,7 +27,7 @@ const { Content } = await render(producto);
         variant: "link",
       })}
     >
-      <ArrowLeft class="h-5 w-5" />
+      <ArrowLeftIcon className="h-5 w-5" />
       Volver a lista de Productos
     </a>
   </div>
