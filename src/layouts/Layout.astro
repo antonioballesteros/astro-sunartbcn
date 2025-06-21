@@ -13,6 +13,10 @@ import { Header } from "@/components/Header";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sunart BCN</title>
+    <script is:inline>
+      // Marca la página como en carga
+      document.documentElement.classList.add("opacity-0");
+    </script>
     <ClientRouter />
   </head>
   <body class="font-sans text-brand-900 bg-background">
@@ -28,6 +32,33 @@ import { Header } from "@/components/Header";
       >
     </footer>
   </body><script is:inline>
+    // Solución para FOUC que espera a que las fuentes estén cargadas
+    if ("fonts" in document) {
+      // Primero intentamos esperar a que las fuentes estén cargadas
+      Promise.all([
+        document.fonts.ready,
+        new Promise((resolve) => {
+          if (document.readyState === "complete") {
+            resolve();
+          } else {
+            window.addEventListener("load", resolve);
+          }
+        }),
+      ]).then(() => {
+        // Damos un pequeño margen adicional
+        setTimeout(() => {
+          document.documentElement.classList.remove("opacity-0");
+        }, 100);
+      });
+    } else {
+      // Fallback para navegadores sin API de fuentes
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.documentElement.classList.remove("opacity-0");
+        }, 150);
+      });
+    }
+
     // Función para aplicar el tema
     function applyTheme() {
       const getThemePreference = () => {
