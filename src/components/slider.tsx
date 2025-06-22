@@ -11,8 +11,14 @@ import "./slider.css";
 
 // import required modules
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
+import { categorias } from "../lib/categorias";
 
 export function Slider() {
+  // Filtrar categorías que tienen imágenes
+  const categoriasConImagen = categorias.filter(
+    (categoria) => categoria.imagen
+  );
+
   return (
     <>
       <Swiper
@@ -38,33 +44,14 @@ export function Slider() {
         modules={[Autoplay, EffectCoverflow, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img src="/images/categorias/tmp_pendientes.jpg" alt="Pendientes" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/categorias/tmp-collares.jpg" alt="Collares" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="/images/categorias/tmp_puntos-libro.jpg"
-            alt="Puntos de libro"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/categorias/tmp_porta-velas.jpg" alt="Porta velas" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/categorias/tmp_lamparas.jpg" alt="Lámparas" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/categorias/tmp_inciensos.jpg" alt="Inciensos" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/categorias/tmp_blocks.jpg" alt="Blocks" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/categorias/tmp_bandeja.jpg" alt="Bandejas" />
-        </SwiperSlide>
+        {categoriasConImagen.map((categoria) => (
+          <SwiperSlide key={categoria.id}>
+            <a href={categoria.ruta}>
+              <img src={categoria.imagen} alt={categoria.nombre} />
+              <div className="categoria-nombre">{categoria.nombre}</div>
+            </a>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );
