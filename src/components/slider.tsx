@@ -39,31 +39,31 @@ export function Slider() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+          <img src="/images/categorias/tmp_pendientes.jpg" alt="Pendientes" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+          <img src="/images/categorias/tmp-collares.jpg" alt="Collares" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+          <img
+            src="/images/categorias/tmp_puntos-libro.jpg"
+            alt="Puntos de libro"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+          <img src="/images/categorias/tmp_porta-velas.jpg" alt="Porta velas" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+          <img src="/images/categorias/tmp_lamparas.jpg" alt="Lámparas" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+          <img src="/images/categorias/tmp_inciensos.jpg" alt="Inciensos" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+          <img src="/images/categorias/tmp_blocks.jpg" alt="Blocks" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+          <img src="/images/categorias/tmp_bandeja.jpg" alt="Bandejas" />
         </SwiperSlide>
       </Swiper>
     </>
