@@ -31,15 +31,13 @@ const productosFiltrados = productos.filter(
 
 <Layout title={`${categoriaSeleccionada!.nombre} – Productos – Sunart BCN`}>
   <section class="container mx-auto px-4 py-8">
-    <div
-      class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0 mb-6"
-    >
-      <h1 class="text-3xl md:text-4xl font-serif text-brand-700">
+    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0 mb-6">
+      <h1 class="text-3xl md:text-4xl font-serif text-brand-700 order-2 md:order-1">
         {categoriaSeleccionada!.nombre}
       </h1>
       <a
         href="/productos"
-        class="text-brand-600 hover:underline text-sm font-medium self-end md:self-auto"
+        class="text-brand-600 hover:underline text-sm font-medium self-end order-1 md:order-2"
       >
         ← Volver a todos los productos
       </a>
