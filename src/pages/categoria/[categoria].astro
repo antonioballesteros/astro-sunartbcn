@@ -27,19 +27,15 @@ const categoriaSeleccionada =
 const productosFiltrados = productos.filter(
   (producto) => producto.data.categoria === categoria
 );
-
-// Categoría actual
-const categoriaActual =
-  categoriaSeleccionada?.nombre || "Categoría no encontrada";
 ---
 
-<Layout title={`${categoriaActual} – Productos – Sunart BCN`}>
+<Layout title={`${categoriaSeleccionada!.nombre} – Productos – Sunart BCN`}>
   <section class="container mx-auto px-4 py-8">
     <div
       class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0 mb-6"
     >
       <h1 class="text-3xl md:text-4xl font-serif text-brand-700">
-        {categoriaActual}
+        {categoriaSeleccionada!.nombre}
       </h1>
       <a
         href="/productos"
@@ -49,70 +45,44 @@ const categoriaActual =
       </a>
     </div>
 
-    <!-- Selector de categorías para escritorio -->
-    <div class="mb-8 hidden md:block">
-      <div class="flex flex-wrap gap-3">
-        <a
-          href="/productos"
-          class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${!categoria ? "bg-brand-600 text-white" : "bg-brand-200 hover:bg-brand-300"}`}
-        >
-          Todos
-        </a>
-        {
-          categorias.map((cat) => (
-            <a
-              href={`/categoria/${cat.id}`}
-              class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${categoria === cat.id ? "bg-brand-600 text-white" : "bg-brand-200 hover:bg-brand-300"}`}
-            >
-              {cat.nombre}
-            </a>
-          ))
-        }
-      </div>
-    </div>
-
-    <!-- Selector de categorías para móvil (Pills horizontales con scroll e indicadores) -->
-    <div class="mb-6 md:hidden">
+    <div class="mb-6">
       <div class="relative">
-        <div class="overflow-x-auto pb-3 flex gap-2 scrollbar-container">
-          {
-            /* Mostrar siempre "Todos" como primera opción con un color distintivo */
-          }
+        <div
+          class="flex md:flex-wrap flex-nowrap gap-3 md:overflow-visible overflow-x-auto pb-3 scrollbar-container"
+        >
           <a
             href="/productos"
-            class="px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 bg-amber-500 text-white"
+            class="px-3 py-1.5 md:px-4 md:py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 md:flex-shrink md:whitespace-normal bg-amber-500 text-white"
           >
             Todos
           </a>
 
-          {/* Mostrar la categoría seleccionada en segundo lugar */}
-          {
-            categoria && categoriaSeleccionada && (
-              <a
-                href={`/categoria/${categoriaSeleccionada.id}`}
-                class="px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 bg-brand-600 text-white"
-              >
-                {categoriaSeleccionada.nombre}
-              </a>
-            )
-          }
+          <a
+            href={`/categoria/${categoriaSeleccionada!.id}`}
+            class="px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 bg-brand-800 text-white md:hidden"
+          >
+            {categoriaSeleccionada!.nombre}
+          </a>
 
           {
-            categorias
-              .filter((cat) => cat.id !== categoria) // Excluir la categoría ya mostrada
-              .map((cat) => (
-                <a
-                  href={`/categoria/${cat.id}`}
-                  class="px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 bg-brand-200 hover:bg-brand-300"
-                >
-                  {cat.nombre}
-                </a>
-              ))
+            categorias.map((cat) => (
+              <a
+                href={`/categoria/${cat.id}`}
+                class={`px-3 py-1.5 md:px-4 md:py-2 rounded-full text-sm font-medium transition-colors text-white hover:bg-brand-700 
+                  ${
+                    cat.id === categoria
+                      ? "bg-brand-800 hidden md:inline-block" // Ocultar en móvil (ya mostrada arriba), visible en escritorio
+                      : "bg-brand-600 whitespace-nowrap flex-shrink-0 md:flex-shrink md:whitespace-normal"
+                  }`}
+              >
+                {cat.nombre}
+              </a>
+            ))
           }
         </div>
-        <!-- Indicadores de scroll - adaptados para modo claro y oscuro -->
+        <!-- Indicador de scroll solo en móvil -->
         <div
-          class="absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-background pointer-events-none"
+          class="absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-background pointer-events-none md:hidden"
         ></div>
       </div>
     </div>
@@ -125,7 +95,7 @@ const categoriaActual =
           ? " producto encontrado"
           : " productos encontrados"
       }
-      {categoria && ` en ${categoriaActual}`}
+      {` en ${categoriaSeleccionada!.nombre}`}
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
