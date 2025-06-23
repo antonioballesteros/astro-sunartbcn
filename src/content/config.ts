@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import { CATEGORIAS_PRODUCTO } from '../lib/categorias';
+import type { CategoriaId } from '../lib/categorias';
 
 const productos = defineCollection({
   schema: z.object({
@@ -8,7 +8,7 @@ const productos = defineCollection({
     featured: z.boolean().optional().default(false),
     precio: z.number(),
     imagen: z.string(),
-    categoria: z.enum(CATEGORIAS_PRODUCTO),
+    categoria: z.custom<CategoriaId>(),
     flores: z.array(z.string()),
   }),
 });

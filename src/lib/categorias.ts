@@ -1,6 +1,9 @@
+// Tipo para los IDs de categoría
+export type CategoriaId = "lamparas" | "blocks" | "bandejas" | "inciensos" | "porta-velas" | "puntos-de-libro" | "pendientes" | "colgantes" | "marinas";
+
 // Tipo para el objeto de configuración de categorías
 export type Categoria = {
-  id: string;
+  id: CategoriaId;
   nombre: string;
   imagen: string;
   imagenGrande: string;
