@@ -9,3 +9,13 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+/* Estilos para el contenedor de scroll */
+.scrollbar-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

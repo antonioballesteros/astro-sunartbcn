@@ -71,25 +71,45 @@ const categoriaActual =
       </div>
     </div>
 
-    <!-- Selector de categorías para móvil (Pills horizontales con scroll) -->
+    <!-- Selector de categorías para móvil (Pills horizontales con scroll e indicadores) -->
     <div class="mb-6 md:hidden">
-      <div class="flex overflow-x-auto pb-3 gap-2 no-scrollbar">
-        <a
-          href="/productos"
-          class={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${!categoria ? "bg-brand-600 text-white" : "bg-brand-200 hover:bg-brand-300"}`}
-        >
-          Todos
-        </a>
-        {
-          categorias.map((cat) => (
+      <div class="relative">
+        <div class="overflow-x-auto pb-3 flex gap-2 scrollbar-container">
+          {/* Mostrar siempre "Todos" como primera opción con un color distintivo */}
+          <a
+            href="/productos"
+            class="px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 bg-amber-500 text-white"
+          >
+            Todos
+          </a>
+          
+          {/* Mostrar la categoría seleccionada en segundo lugar */}
+          {categoria && categoriaSeleccionada && (
             <a
-              href={`/categoria/${cat.id}`}
-              class={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${categoria === cat.id ? "bg-brand-600 text-white" : "bg-brand-200 hover:bg-brand-300"}`}
+              href={`/categoria/${categoriaSeleccionada.id}`}
+              class="px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 bg-brand-600 text-white"
             >
-              {cat.nombre}
+              {categoriaSeleccionada.nombre}
             </a>
-          ))
-        }
+          )}
+          
+          {
+            categorias
+              .filter(cat => cat.id !== categoria) // Excluir la categoría ya mostrada
+              .map((cat) => (
+                <a
+                  href={`/categoria/${cat.id}`}
+                  class="px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 bg-brand-200 hover:bg-brand-300"
+                >
+                  {cat.nombre}
+                </a>
+              ))
+          }
+        </div>
+        <!-- Indicadores de scroll -->
+        <div
+          class="absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-white pointer-events-none"
+        ></div>
       </div>
     </div>
 
