@@ -3,7 +3,7 @@ id: colgante-flor-dorada
 nombre: Colgante Flor Dorada
 precio: 22
 imagen: /images/_tmp_prod-without-img.png
-categoria: Colgantes
+categoria: colgantes
 flores:
   - Paniculata
   - Siempreviva

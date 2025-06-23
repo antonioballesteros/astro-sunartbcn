@@ -3,7 +3,7 @@ id: marca-paginas-amarillo
 nombre: Marca Páginas Amarillo
 precio: 12
 imagen: /images/_tmp_prod-without-img.png
-categoria: Puntos de libro
+categoria: puntos-de-libro
 flores:
   - Margarita amarilla
   - Helecho

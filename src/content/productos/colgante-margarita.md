@@ -4,7 +4,7 @@ nombre: Colgantes con Margaritas
 featured: true
 precio: 18
 imagen: /images/_tmp_prod-without-img.png
-categoria: Colgantes
+categoria: colgantes
 flores:
   - Margarita
 ---

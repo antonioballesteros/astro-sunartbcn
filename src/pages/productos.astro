@@ -2,19 +2,172 @@
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import ProductCard from "../components/ProductCard.astro";
+import CategoryCard from "../components/CategoryCard.astro";
+import { categorias } from "../lib/categorias";
+import { ChevronDownIcon } from "../components/icons";
 
+// Obtener todos los productos
 const productos = await getCollection("productos");
+
+// Obtener categoría de la URL si existe
+const categoria = Astro.url.searchParams.get("categoria");
+
+// Obtener información de la categoría seleccionada
+const categoriaSeleccionada = categoria
+  ? categorias.find((cat) => cat.id === categoria)
+  : null;
+
+// Filtrar productos por categoría si se especifica
+const productosFiltrados = categoriaSeleccionada
+  ? productos.filter((producto) => {
+      return producto.data.categoria === categoriaSeleccionada.id;
+    })
+  : productos;
+
+// Categoría actual
+const categoriaActual = categoriaSeleccionada?.nombre || "Todos los productos";
 ---
 
-<Layout title="Productos – Sunart BCN">
+<Layout title={`${categoriaActual} – Productos – Sunart BCN`}>
   <section>
-    <h1
-      class="text-4xl font-serif text-brand-700 mb-6"
-      transition:name="main-heading">Productos</h1
-    >
+    <div class="flex justify-between items-center mb-6">
+      <h1
+        class="text-4xl font-serif text-brand-700"
+        transition:name="main-heading">Productos</h1
+      >
+
+      <!-- Menú de categorías para móvil -->
+      <div class="relative md:hidden">
+        <button
+          id="categoryMenuButton"
+          class="flex items-center gap-2 px-4 py-2 bg-brand-200 rounded-full text-sm font-medium"
+        >
+          {categoriaActual}
+          <ChevronDownIcon className="h-4 w-4" />
+        </button>
+        <div
+          id="categoryMenu"
+          class="hidden absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 z-10"
+        >
+          <a
+            href="/productos"
+            class={`block px-4 py-2 text-sm ${!categoria ? "bg-brand-100 text-brand-700" : "text-gray-700 hover:bg-brand-50"}`}
+          >
+            Todos los productos
+          </a>
+          {
+            categorias.map((cat) => (
+              <a
+                href={`/productos?categoria=${cat.id}`}
+                class={`block px-4 py-2 text-sm ${categoria === cat.id ? "bg-brand-100 text-brand-700" : "text-gray-700 hover:bg-brand-50"}`}
+              >
+                {cat.nombre}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    {/* Mostrar grid de categorías solo cuando no hay categoría seleccionada */}
+    {
+      !categoria && (
+        <div class="mb-12">
+          <h2 class="text-2xl font-serif text-brand-600 mb-6">
+            Explorar por categorías
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {categorias
+              .filter((cat) => cat.imagen)
+              .map((cat) => (
+                <CategoryCard
+                  id={cat.id}
+                  nombre={cat.nombre}
+                  imagen={cat.imagen}
+                  ruta={cat.ruta}
+                />
+              ))}
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Selector de categorías para escritorio -->
+    <div class="mb-8 hidden md:block">
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/productos"
+          class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${!categoria ? "bg-brand-600 text-white" : "bg-brand-200 hover:bg-brand-300"}`}
+        >
+          Todos
+        </a>
+        {
+          categorias.map((cat) => (
+            <a
+              href={`/productos?categoria=${cat.id}`}
+              class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${categoria === cat.id ? "bg-brand-600 text-white" : "bg-brand-200 hover:bg-brand-300"}`}
+            >
+              {cat.nombre}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Mostrar el número de productos encontrados */}
+    <p class="text-sm text-gray-600 mb-6">
+      {productosFiltrados.length}
+      {
+        productosFiltrados.length === 1
+          ? " producto encontrado"
+          : " productos encontrados"
+      }
+      {categoria && ` en ${categoriaActual}`}
+    </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {productos.map(({ slug, data }) => <ProductCard slug={slug} {...data} />)}
+      {
+        productosFiltrados.map(({ slug, data }) => (
+          <ProductCard slug={slug} {...data} />
+        ))
+      }
     </div>
+
+    {
+      productosFiltrados.length === 0 && (
+        <div class="text-center py-8">
+          <p class="text-lg text-gray-600">
+            No hay productos en esta categoría.
+          </p>
+          <a
+            href="/productos"
+            class="mt-4 inline-block text-brand-600 hover:underline"
+          >
+            Ver todos los productos
+          </a>
+        </div>
+      )
+    }
   </section>
+
+  <script>
+    // Script para el menú desplegable de categorías en móvil
+    document.addEventListener("DOMContentLoaded", () => {
+      const button = document.getElementById("categoryMenuButton");
+      const menu = document.getElementById("categoryMenu");
+
+      if (button && menu) {
+        button.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+        });
+
+        // Cerrar el menú cuando se hace clic fuera de él
+        document.addEventListener("click", (e) => {
+          if (!button.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.add("hidden");
+          }
+        });
+      }
+    });
+  </script>
 </Layout>
