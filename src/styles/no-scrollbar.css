@@ -1,0 +1,11 @@
+/* Eliminar la barra de desplazamiento visible manteniendo la funcionalidad de scroll */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}

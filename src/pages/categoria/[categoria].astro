@@ -71,30 +71,20 @@ const categoriaActual =
       </div>
     </div>
 
-    <!-- Menú de categorías para móvil -->
-    <div class="relative md:hidden">
-      <button
-        id="categoryMenuButton"
-        class="flex items-center gap-2 px-4 py-2 bg-brand-200 rounded-full text-sm font-medium"
-      >
-        {categoriaActual}
-        <ChevronDownIcon className="h-4 w-4" />
-      </button>
-      <div
-        id="categoryMenu"
-        class="hidden absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 z-10"
-      >
+    <!-- Selector de categorías para móvil (Pills horizontales con scroll) -->
+    <div class="mb-6 md:hidden">
+      <div class="flex overflow-x-auto pb-3 gap-2 no-scrollbar">
         <a
           href="/productos"
-          class={`block px-4 py-2 text-sm ${!categoria ? "bg-brand-100 text-brand-700" : "text-gray-700 hover:bg-brand-50"}`}
+          class={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${!categoria ? "bg-brand-600 text-white" : "bg-brand-200 hover:bg-brand-300"}`}
         >
-          Todos los productos
+          Todos
         </a>
         {
           categorias.map((cat) => (
             <a
               href={`/categoria/${cat.id}`}
-              class={`block px-4 py-2 text-sm ${categoria === cat.id ? "bg-brand-100 text-brand-700" : "text-gray-700 hover:bg-brand-50"}`}
+              class={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${categoria === cat.id ? "bg-brand-600 text-white" : "bg-brand-200 hover:bg-brand-300"}`}
             >
               {cat.nombre}
             </a>
