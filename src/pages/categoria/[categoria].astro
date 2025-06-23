@@ -1,0 +1,139 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import { categorias } from "../../lib/categorias";
+import { ChevronDownIcon } from "../../components/icons";
+
+// Generar rutas estáticas para cada categoría
+export async function getStaticPaths() {
+  return categorias.map((cat) => ({
+    params: { categoria: cat.id },
+    props: { categoria: cat.id },
+  }));
+}
+
+// Obtener la categoría de los props
+const { categoria } = Astro.props;
+
+// Obtener todos los productos
+const productos = await getCollection("productos");
+
+// Obtener información de la categoría seleccionada
+const categoriaSeleccionada =
+  categorias.find((cat) => cat.id === categoria) || null;
+
+// Filtrar productos por categoría
+const productosFiltrados = productos.filter(
+  (producto) => producto.data.categoria === categoria,
+);
+
+// Categoría actual
+const categoriaActual =
+  categoriaSeleccionada?.nombre || "Categoría no encontrada";
+---
+
+<Layout title={`${categoriaActual} – Productos – Sunart BCN`}>
+  <section class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-4xl font-serif text-brand-700">
+        {categoriaActual}
+      </h1>
+      <a
+        href="/productos"
+        class="text-brand-600 hover:underline text-sm font-medium"
+      >
+        ← Volver a todos los productos
+      </a>
+    </div>
+
+    <!-- Selector de categorías para escritorio -->
+    <div class="mb-8 hidden md:block">
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/productos"
+          class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${!categoria ? "bg-brand-600 text-white" : "bg-brand-200 hover:bg-brand-300"}`}
+        >
+          Todos
+        </a>
+        {
+          categorias.map((cat) => (
+            <a
+              href={`/categoria/${cat.id}`}
+              class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${categoria === cat.id ? "bg-brand-600 text-white" : "bg-brand-200 hover:bg-brand-300"}`}
+            >
+              {cat.nombre}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Menú de categorías para móvil -->
+    <div class="relative md:hidden">
+      <button
+        id="categoryMenuButton"
+        class="flex items-center gap-2 px-4 py-2 bg-brand-200 rounded-full text-sm font-medium"
+      >
+        {categoriaActual}
+        <ChevronDownIcon className="h-4 w-4" />
+      </button>
+      <div
+        id="categoryMenu"
+        class="hidden absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 z-10"
+      >
+        <a
+          href="/productos"
+          class={`block px-4 py-2 text-sm ${!categoria ? "bg-brand-100 text-brand-700" : "text-gray-700 hover:bg-brand-50"}`}
+        >
+          Todos los productos
+        </a>
+        {
+          categorias.map((cat) => (
+            <a
+              href={`/categoria/${cat.id}`}
+              class={`block px-4 py-2 text-sm ${categoria === cat.id ? "bg-brand-100 text-brand-700" : "text-gray-700 hover:bg-brand-50"}`}
+            >
+              {cat.nombre}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Mostrar el número de productos encontrados */}
+    <p class="text-sm text-gray-600 mb-6">
+      {productosFiltrados.length}
+      {
+        productosFiltrados.length === 1
+          ? " producto encontrado"
+          : " productos encontrados"
+      }
+      {categoria && ` en ${categoriaActual}`}
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        productosFiltrados.map(({ slug, data }) => (
+          <ProductCard slug={slug} {...data} />
+        ))
+      }
+    </div>
+
+    {
+      productosFiltrados.length === 0 && (
+        <div class="text-center py-12">
+          <p class="text-lg text-gray-600 mb-4">
+            No hay productos en esta categoría.
+          </p>
+          <a
+            href="/productos"
+            class="inline-block px-6 py-2 bg-brand-600 text-white rounded-full hover:bg-brand-700 transition-colors"
+          >
+            Ver todos los productos
+          </a>
+        </div>
+      )
+    }
+  </section>
+</Layout>

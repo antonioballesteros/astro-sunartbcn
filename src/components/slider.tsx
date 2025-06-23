@@ -46,7 +46,7 @@ export function Slider() {
       >
         {categoriasConImagen.map((categoria) => (
           <SwiperSlide key={categoria.id}>
-            <a href={categoria.ruta}>
+            <a href={`/categoria/${categoria.id}`}>
               <img src={categoria.imagen} alt={categoria.nombre} />
               <div className="categoria-nombre">{categoria.nombre}</div>
             </a>
