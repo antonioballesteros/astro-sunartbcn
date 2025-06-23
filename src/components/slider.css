@@ -39,3 +39,8 @@
   font-weight: bold;
   font-size: 1.2rem;
 }
+
+.swiper-pagination-bullet {
+  --swiper-pagination-bullet-inactive-color: var(--foreground);
+  --swiper-pagination-bullet-inactive-opacity: 0.5;
+}
