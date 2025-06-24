@@ -7,13 +7,13 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
-import "./slider.css";
+import "./category-slider.css";
 
 // import required modules
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import { categorias } from "../lib/categorias";
 
-export function Slider() {
+export function CategorySlider() {
   // Filtrar categorías que tienen imágenes
   const categoriasConImagen = categorias.filter(
     (categoria) => categoria.imagen

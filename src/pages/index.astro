@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { buttonVariants } from "@/components/ui/button";
-import { Slider } from "@/components/slider";
+import { CategorySlider } from "@/components/CategorySlider";
 import CollectionBanner from "@/components/CollectionBanner.astro";
 import FeaturedProducts from "@/components/FeaturedProducts.astro";
 ---
@@ -70,7 +70,7 @@ import FeaturedProducts from "@/components/FeaturedProducts.astro";
     </div>
   </section>
 
-  <Slider client:load />
+  <CategorySlider client:load />
 
   <FeaturedProducts columns={3} />
 
