@@ -20,7 +20,7 @@ const { Content } = await render(producto);
 ---
 
 <Layout>
-  <div class="container mx-auto px-6 py-4">
+  <div>
     <a
       href="/productos"
       class={buttonVariants({
@@ -32,10 +32,7 @@ const { Content } = await render(producto);
     </a>
   </div>
 
-  <section
-    class="max-w-5xl mx-auto py-16 px-6"
-    transition:name={`product-${slug}`}
-  >
+  <section transition:name={`product-${slug}`}>
     <h1
       class="text-3xl font-serif mb-4"
       transition:name={`product-title-${slug}-mobile`}
