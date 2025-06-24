@@ -1,0 +1,41 @@
+---
+import ProductCard from "./ProductCard.astro";
+import { getCollection } from "astro:content";
+import { buttonVariants } from "@/components/ui/button";
+
+interface Props {
+  columns?: number;
+  className?: string;
+}
+
+const { columns = 2, className = "py-16 px-6" } = Astro.props;
+
+const productos = await getCollection("productos");
+const featuredProducts = productos.filter((product) => product.data.featured);
+
+// Determinamos la clase de columnas basada en el número proporcionado
+const gridColumnsClass = `grid-cols-1 lg:grid-cols-${columns}`;
+---
+
+<section class={className}>
+  <h2 class="text-3xl font-serif text-center mb-10">Productos destacados</h2>
+
+  <div class={`grid ${gridColumnsClass} gap-8 max-w-6xl mx-auto`}>
+    {
+      featuredProducts.map(({ slug, data }) => (
+        <ProductCard slug={slug} {...data} />
+      ))
+    }
+  </div>
+
+  <div class="text-center mt-8">
+    <a
+      href="/productos"
+      class={buttonVariants({
+        variant: "brand",
+      })}
+    >
+      Ver todos los productos
+    </a>
+  </div>
+</section>

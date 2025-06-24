@@ -1,6 +1,7 @@
 ---
 id: cuadro-floral-natura
 nombre: Cuadro Floral Natura
+featured: true
 precio: 35
 imagen: /images/_tmp_prod-without-img.png
 categoria: blocks

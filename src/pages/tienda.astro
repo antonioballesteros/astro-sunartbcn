@@ -1,11 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { buttonVariants } from "../components/ui/button";
-import { getCollection } from "astro:content";
-import ProductCard from "@/components/ProductCard.astro";
-
-const productos = await getCollection("productos");
-const featuredProducts = productos.filter((product) => product.data.featured);
+import FeaturedProducts from "@/components/FeaturedProducts.astro";
 ---
 
 <Layout title="Tienda – Sunart BCN">
@@ -71,30 +67,7 @@ const featuredProducts = productos.filter((product) => product.data.featured);
     </div>
 
     <div class="mb-10 gap-8 flex flex-col">
-      <h2 class="text-3xl font-serif text-center text-brand-900"
-        >Productos Destacados</h2
-      >
-      <p class="text-center">
-        Aquí hay una selección de mis productos más populares. Todos son piezas
-        artesanales únicas hechas con flores preservadas.
-      </p>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {
-          featuredProducts.map(({ slug, data }) => (
-            <ProductCard slug={slug} {...data} />
-          ))
-        }
-      </div>
-      <div class="text-center">
-        <a
-          href="/productos"
-          class={buttonVariants({
-            variant: "brand",
-          })}
-        >
-          Ver todos los productos
-        </a>
-      </div>
+      <FeaturedProducts columns={3} className="mb-0" />
     </div>
 
     <div class="mb-10">

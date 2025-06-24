@@ -1,6 +1,7 @@
 ---
 id: colgante-flor-dorada
 nombre: Colgante Flor Dorada
+featured: true
 precio: 22
 imagen: /images/_tmp_prod-without-img.png
 categoria: colgantes
