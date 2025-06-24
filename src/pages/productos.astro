@@ -1,12 +1,20 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import ProductCard from "../components/ProductCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
 import { categorias } from "../lib/categorias";
+import { buttonVariants } from "../components/ui/button";
 
-// Obtener todos los productos
+// Obtener todos los productos para contar por categoría
 const productos = await getCollection("productos");
+
+// Contar productos por categoría
+const categoriaStats = categorias
+  .filter((cat) => cat.imagen)
+  .map((cat) => {
+    const count = productos.filter((p) => p.data.categoria === cat.id).length;
+    return { ...cat, count };
+  });
 ---
 
 <Layout title="Productos – Sunart BCN">
@@ -16,15 +24,13 @@ const productos = await getCollection("productos");
         class="text-4xl font-serif text-brand-700"
         transition:name="main-heading"
       >
-        Productos
+        Categorías
       </h1>
     </div>
 
-    <div class="mb-12">
-      <h2 class="text-2xl font-serif text-brand-600 mb-6">
-        Explorar por categorías
-      </h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <!-- Sección de categorías destacadas -->
+    <div class="mb-16">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {
           categorias
             .filter((cat) => cat.imagen)
@@ -39,29 +45,40 @@ const productos = await getCollection("productos");
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {productos.map(({ slug, data }) => <ProductCard slug={slug} {...data} />)}
+    <!-- Sección de estadísticas de categorías -->
+    <div class="mb-16 bg-brand-50 rounded-xl p-6 md:p-8">
+      <h2 class="text-2xl font-serif text-brand-600 mb-6">
+        Nuestro catálogo
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          categoriaStats.map((cat) => (
+            <a
+              href={`/categoria/${cat.id}`}
+              class="block bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 rounded-full overflow-hidden bg-brand-100 flex-shrink-0">
+                  {cat.imagen && (
+                    <img
+                      src={cat.imagen}
+                      alt={cat.nombre}
+                      class="w-full h-full object-cover"
+                    />
+                  )}
+                </div>
+                <div>
+                  <h3 class="font-medium text-lg">{cat.nombre}</h3>
+                  <p class="text-sm text-gray-600">
+                    {cat.count} {cat.count === 1 ? "producto" : "productos"}
+                  </p>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
     </div>
   </section>
-
-  <script>
-    // Script para el menú desplegable de categorías en móvil
-    document.addEventListener("DOMContentLoaded", () => {
-      const button = document.getElementById("categoryMenuButton");
-      const menu = document.getElementById("categoryMenu");
-
-      if (button && menu) {
-        button.addEventListener("click", () => {
-          menu.classList.toggle("hidden");
-        });
-
-        // Cerrar el menú cuando se hace clic fuera de él
-        document.addEventListener("click", (e) => {
-          if (!button.contains(e.target) && !menu.contains(e.target)) {
-            menu.classList.add("hidden");
-          }
-        });
-      }
-    });
-  </script>
 </Layout>

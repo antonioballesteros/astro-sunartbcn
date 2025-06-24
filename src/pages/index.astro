@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard.astro";
 import { getCollection } from "astro:content";
 import { buttonVariants } from "@/components/ui/button";
 import { Slider } from "@/components/slider";
+import CollectionBanner from "@/components/CollectionBanner.astro";
 
 const productos = await getCollection("productos");
 const featuredProducts = productos.filter((product) => product.data.featured);
@@ -67,7 +68,7 @@ const featuredProducts = productos.filter((product) => product.data.featured);
           class={buttonVariants({
             variant: "link",
             className: "mt-6",
-          })}>Leer más</a
+          })}>Quieres saber más?</a
         >
       </div>
     </div>
@@ -84,17 +85,10 @@ const featuredProducts = productos.filter((product) => product.data.featured);
         ))
       }
     </div>
-    <div class="text-center mt-10">
-      <a
-        href="/productos"
-        class={buttonVariants({
-          variant: "link",
-        })}
-      >
-        Ver toda la tienda</a
-      >
-    </div>
   </section>
+
+  <!-- Sección de productos destacados o nuevos -->
+  <CollectionBanner />
 
   <section class="py-16 px-6 text-center text-brand-900">
     <h2 class="text-3xl font-serif mb-6">Hecho con amor</h2>
