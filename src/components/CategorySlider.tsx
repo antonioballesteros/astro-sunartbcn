@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
-import "./category-slider.css";
+import "./slider.css";
 
 // import required modules
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
@@ -47,8 +47,14 @@ export function CategorySlider() {
         {categoriasConImagen.map((categoria) => (
           <SwiperSlide key={categoria.id}>
             <a href={`/categoria/${categoria.id}`}>
-              <img src={categoria.imagen} alt={categoria.nombre} />
-              <div className="categoria-nombre">{categoria.nombre}</div>
+              <img
+                src={categoria.imagen}
+                alt={categoria.nombre}
+                className="block w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white p-2.5 text-center font-bold text-xl">
+                {categoria.nombre}
+              </div>
             </a>
           </SwiperSlide>
         ))}
