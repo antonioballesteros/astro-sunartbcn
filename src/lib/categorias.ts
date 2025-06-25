@@ -57,13 +57,13 @@ export const categorias: Categoria[] = [
   {
     id: "colgantes",
     nombre: "Colgantes",
-    imagen: "/images/categorias/tmp-collares.jpg",
-    imagenGrande: "/images/categorias/tmp-collares-big.jpg",
+    imagen: "/images/categorias/tmp_collares.jpg",
+    imagenGrande: "/images/categorias/tmp_collares-big.jpg",
   },
   {
     id: "marinas",
     nombre: "Marinas",
-    imagen: "", // No hay imagen específica para esta categoría
-    imagenGrande: "",
+    imagen: "/images/categorias/tmp_marina.jpg", 
+    imagenGrande: "/images/categorias/tmp_marina-big.jpg",
   }
 ];
