@@ -161,4 +161,9 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .grayscale {
+    --tw-grayscale: grayscale(100%);
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-grayscale);
+  }
 }
