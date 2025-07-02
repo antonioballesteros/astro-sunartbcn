@@ -32,7 +32,7 @@ const CategoryExpandable: React.FC<ExpandableCategorySectionProps> = ({
 
   return (
     <section
-      className={cn("flex w-full h-[400px]", className)}
+      className={cn("flex w-full h-[400px] bg-brand-600", className)}
       onMouseEnter={() => {
         setSelected(-1);
         setIsHover(true);
@@ -46,10 +46,10 @@ const CategoryExpandable: React.FC<ExpandableCategorySectionProps> = ({
         <div
           key={cat.id}
           className={cn(
-            "relative w-0 grow transition-all duration-700 border-brand-950 group ",
+            "relative w-0 grow transition-all duration-700 border-brand-950 group",
             position === selected
-              ? "opacity-100 w-[300px] border-4 contrast-125 border-brand-950 filter-none "
-              : "opacity-80 grayscale hover:opacity-100 hover:w-[300px] hover:border-4 hover:contrast-125 hover:filter-none"
+              ? "opacity-100 w-[300px] contrast-125 border-brand-950 filter-none mx-2"
+              : "opacity-80 grayscale hover:opacity-100 hover:w-[300px] hover:border-4 hover:contrast-125 hover:filter-none mx-0 hover:mx-2"
           )}
         >
           <img
