@@ -1,10 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import CategoryCard from "../components/CategoryCard.astro";
-import ExpandableCategorySection from "../components/CategoryExpandable.tsx";
 import { categorias } from "../lib/categorias";
-import { buttonVariants } from "../components/ui/button";
+import CategoryTile from "../components/CategoryTile.astro";
 
 // Obtener todos los productos para contar por categoría
 const productos = await getCollection("productos");
@@ -20,41 +18,34 @@ const categoriaStats = categorias
 
 <Layout title="Productos – Sunart BCN">
   <section>
-    <div class="flex justify-between items-center mb-6">
-      <h1
-        class="text-4xl font-serif text-brand-700"
-        transition:name="main-heading"
-      >
-        Categorías
+    <div class="mb-12">
+      <h1 class="text-4xl font-serif text-brand-700 text-center mb-2">
+        Nuestras Categorías
       </h1>
-    </div>
-
-    <!-- Sección de categorías destacadas -->
-    <div class="mb-16 md:hidden">
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <p class="text-brand-600 text-center mb-10 max-w-2xl mx-auto">
+        Descubre nuestras colecciones de productos artesanales. Cada pieza es
+        única, creada con flores naturales cuidadosamente seleccionadas e
+        inspiración en la naturaleza.
+      </p>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+      >
         {
-          categorias
-            .filter((cat) => cat.imagen)
-            .map((cat) => (
-              <CategoryCard
-                id={cat.id}
-                nombre={cat.nombre}
-                imagen={cat.imagen}
-              />
-            ))
+          categorias.map((cat) => (
+            <CategoryTile
+              id={cat.id}
+              nombre={cat.nombre}
+              imagen={cat.imagen}
+              descripcion={cat.descripcion}
+            />
+          ))
         }
       </div>
     </div>
 
-    <ExpandableCategorySection
-      categorias={categorias}
-      client:load
-      className="hidden md:flex"
-    />
-
     <!-- Sección de estadísticas de categorías -->
     <div class="mb-16 bg-brand-50 rounded-xl p-6 md:p-8">
-      <h2 class="text-2xl font-serif text-brand-600 mb-6"> Catálogo </h2>
+      <h2 class="text-2xl font-serif text-brand-600 mb-6">Catálogo</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {

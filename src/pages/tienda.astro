@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { buttonVariants } from "../components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import FeaturedProducts from "@/components/FeaturedProducts.astro";
+import CategoryExpandable from "@/components/CategoryExpandable";
+import { categorias } from "../lib/categorias";
 ---
 
 <Layout title="Tienda – Sunart BCN">
@@ -15,9 +17,9 @@ import FeaturedProducts from "@/components/FeaturedProducts.astro";
 
     <div class="mb-10 text-center">
       <div class="bg-brand-100 p-8 rounded-lg shadow-md mb-8">
-        <h2 class="text-2xl font-serif mb-4 text-brand-900"
-          >Próximamente: Tienda Online</h2
-        >
+        <h2 class="text-2xl font-serif mb-4 text-brand-900">
+          Próximamente: Tienda Online
+        </h2>
         <p class="mb-4 text-lg">
           Estoy trabajando para que muy pronto puedas comprar mis creaciones
           directamente desde esta web.
@@ -36,9 +38,9 @@ import FeaturedProducts from "@/components/FeaturedProducts.astro";
     </div>
 
     <div class="mb-10">
-      <h2 class="text-3xl font-serif mb-6 text-center text-brand-900"
-        >¿Cómo comprar?</h2
-      >
+      <h2 class="text-3xl font-serif mb-6 text-center text-brand-900">
+        ¿Cómo comprar?
+      </h2>
       <div class="grid md:grid-cols-3 gap-6 text-center">
         <div class="bg-brand-100 p-6 rounded-lg shadow-md">
           <div class="text-4xl mb-3">👁️</div>
@@ -59,21 +61,25 @@ import FeaturedProducts from "@/components/FeaturedProducts.astro";
         <div class="bg-brand-100 p-6 rounded-lg shadow-md">
           <div class="text-4xl mb-3">📦</div>
           <h3 class="text-xl font-serif mb-2">Recibe</h3>
-          <p>
-            Coordinamos el envío o la entrega de tu pieza artesanal única.
-          </p>
+          <p>Coordinamos el envío o la entrega de tu pieza artesanal única.</p>
         </div>
       </div>
     </div>
+
+    <CategoryExpandable
+      categorias={categorias}
+      client:load
+      className="hidden md:flex"
+    />
 
     <div class="mb-10 gap-8 flex flex-col">
       <FeaturedProducts className="mb-0" />
     </div>
 
     <div class="mb-10">
-      <h2 class="text-3xl font-serif mb-6 text-center text-brand-900"
-        >Artesanía Personalizada</h2
-      >
+      <h2 class="text-3xl font-serif mb-6 text-center text-brand-900">
+        Artesanía Personalizada
+      </h2>
       <div class="bg-brand-100 p-8 rounded-lg shadow-md text-center">
         <p class="mb-4 text-lg">
           ¿Buscas algo único? Puedo crear una pieza personalizada según tus
@@ -95,9 +101,9 @@ import FeaturedProducts from "@/components/FeaturedProducts.astro";
     </div>
 
     <div class="mb-8">
-      <h2 class="text-3xl font-serif mb-6 text-center text-brand-900"
-        >Ferias y Eventos</h2
-      >
+      <h2 class="text-3xl font-serif mb-6 text-center text-brand-900">
+        Ferias y Eventos
+      </h2>
       <p class="text-center mb-6">
         También puedes encontrarme en distintas ferias de artesanía en Barcelona
         y alrededores.
