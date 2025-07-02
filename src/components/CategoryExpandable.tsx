@@ -42,9 +42,10 @@ const CategoryExpandable: React.FC<ExpandableCategorySectionProps> = ({
         setSelected((prev) => rndNext(prev));
       }}
     >
-      {categorias.map((cat, position) => (
-        <div
+      {categorias.map((cat, position) => (       
+        <a
           key={cat.id}
+          href={`/categoria/${cat.id}`}
           className={cn(
             "relative w-0 grow transition-all duration-700 border-brand-950 group",
             position === selected
@@ -69,7 +70,7 @@ const CategoryExpandable: React.FC<ExpandableCategorySectionProps> = ({
               {cat.nombre}
             </span>
           </div>
-        </div>
+        </a>
       ))}
     </section>
   );
